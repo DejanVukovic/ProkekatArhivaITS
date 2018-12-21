@@ -1,0 +1,98 @@
+﻿@model IEnumerable<ITSProject.Models.Skola>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Archive of schools</h2>
+@if (Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Employee"))
+    {
+        <p>@Html.ActionLink("Create New", "Create")</p>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdresaReg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opstina)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostanskiBroj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaticniBroj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PIB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrojRacuna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WebStranica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pecat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Beleska)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdresaReg)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opstina)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostanskiBroj)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaticniBroj)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PIB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrojRacuna)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WebStranica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kontakt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pecat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Beleska)
+                </td>
+                <td>
+                    @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Employee")))
+                    {
+                        <p>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </p>
+                    }
+                        <p>
+                            @Html.ActionLink("Print", "Details", new { id = item.Id })
+                        </p>
+                </td>
+            </tr>
+        }
+
+    </table>
